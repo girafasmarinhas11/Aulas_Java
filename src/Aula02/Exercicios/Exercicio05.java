@@ -19,6 +19,8 @@ public class Exercicio05 {
 
         System.out.println("O valor da soma das notas é " + (x + y + z) );
 
+        scanner.close();
+
 
     }
 }

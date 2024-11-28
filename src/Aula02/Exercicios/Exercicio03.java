@@ -15,5 +15,7 @@ public class Exercicio03 {
         System.out.println("Int: " + x);
         System.out.println("Double: " + y);
 
+        scanner.close();
+
     }
 }
