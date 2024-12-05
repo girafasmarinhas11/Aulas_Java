@@ -1,10 +1,17 @@
 package Aula06.Desafios;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Desafio02 {
+
+    static Scanner scanner = new Scanner(System.in); /*variável global - produz efeito sobre as demais linhas do código*/
+    static String[] cabecalho = {"Id","Nome","Telefone","Email"};
+    static String[][] matrizCadastro = {{"",""}}; /*"banco de dados"*/
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        matrizCadastro[0] = cabecalho;
+
         String menu = """
                 ________________________________________________
                 |Escolha uma opção:                            |
@@ -15,7 +22,8 @@ public class Desafio02 {
                 |    5- Sair                                   |
                 |______________________________________________|
                 """;
-        int opcao = 0;
+        int opcao;
+
         do{
             System.out.println(menu);
             opcao = scanner.nextInt();
@@ -44,15 +52,45 @@ public class Desafio02 {
         while(opcao!=5);
     }
     public static void exibirUsuario(){
-        System.out.println("marola");
+        String tabela = "";
+        for(String[] linhas: matrizCadastro){
+            for (int coluna = 0; coluna < matrizCadastro[0].length; coluna++){
+                tabela += linhas[coluna] +"\t\t";
+            }
+            tabela += "\n";
+        }
+        System.out.println(tabela);
     }
     public static void cadastrarUsuario(){
-        System.out.println("produto");
+        System.out.println("Quantas pessoas você deseja cadastrar: ");
+        int qtdePessoas = scanner.nextInt();
+        scanner.nextLine();
+        String[][] novaMatriz = new String[matrizCadastro.length + qtdePessoas][cabecalho.length];
+
+        for (int linhas = 0; linhas < matrizCadastro.length; linhas++){
+            novaMatriz[linhas] = Arrays.copyOf(matrizCadastro[linhas], matrizCadastro[linhas].length);
+        }
+
+        for(int linhas = matrizCadastro.length; linhas < novaMatriz.length; linhas++){
+            System.out.println("Preencha as informações a seguir: ");
+            System.out.println(cabecalho[0] +" - " +  linhas);
+            novaMatriz[linhas][0] = String.valueOf(linhas);
+
+            for(int coluna = 1; coluna < cabecalho.length; coluna++){// converte valor inteiro para o String
+                System.out.print(cabecalho[coluna] + ": ");
+                novaMatriz[linhas][coluna] = scanner.nextLine();
+            }
+        }
+
+        matrizCadastro = novaMatriz;
     }
+
     public static void atualizarUsuario(){
-        System.out.println("marroquina");
+
+        System.out.println("1");
     }
     public static void  deletarUsuario(){
-        System.out.println("maconha");
+
+        System.out.println("2");
     }
 }

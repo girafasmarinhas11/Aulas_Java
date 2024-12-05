@@ -35,5 +35,7 @@ public class Desafio01 {
             tabela += "\n";
         }
         System.out.println(tabela);
+
+        scanner.close();
     }
 }
