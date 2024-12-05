@@ -6,15 +6,15 @@ public class Exercicio07 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("qual é o primeiro num: ");
-        int num01 = scanner.nextInt();
+        System.out.println("Digite o 1ºnúmero: ");
+        float num01 = scanner.nextFloat();
 
-        System.out.println("qual é o segundo num: ");
-        int num02 = scanner.nextInt();
+        System.out.println("Digite o 2ºnúmero: ");
+        float num02 = scanner.nextFloat();
 
         int opcao;
 
-        System.out.println("Escolha umas opção:");
+        System.out.println("Qual é a operação que deseja realizar?:");
         System.out.println("\t - (1) SOMA");
         System.out.println("\t - (2) SUBTRAÇÃO");
         System.out.println("\t - (3) MULTPLICAÇÃO");
@@ -26,23 +26,19 @@ public class Exercicio07 {
 
         switch (opcao) {
             case 1:
-                System.out.println(num01 + " + " + num02 + " = " + (num02 += num01));
-
+                System.out.println(num01 + " + " + num02 + " = " + (num01 + num02));
                 break;
             case 2:
-                System.out.println(num01 + " - " + num02 + " = " + (num02 - num01));
+                System.out.println(num01 + " - " + num02 + " = " + (num01 - num02));
                 break;
             case 3:
-                System.out.println(num01 + " x " + num02 + " = " + num02 * num01);
+                System.out.println(num01 + " x " + num02 + " = " + (num01 * num02));
                 break;
             case 4:
-                System.out.println(num01 + " / " + num02 + " = " + (num02 / num01));
+                System.out.println(num01 + " / " + num02 + " = " + (num01 / num02));
                 break;
-
-
             default:
-                System.out.println("invaliduuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-
+                System.out.println("inválido!");
         }
 
     }
