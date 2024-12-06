@@ -52,12 +52,13 @@ public class Desafio02 {
         while(opcao!=5);
     }
     public static void exibirUsuario(){
-        String tabela = "";
+        StringBuilder tabela = new StringBuilder();
         for(String[] linhas: matrizCadastro){
             for (int coluna = 0; coluna < matrizCadastro[0].length; coluna++){
-                tabela += linhas[coluna] +"\t\t";
+                int tamanhoColuna = coluna == 0 ? 5 : (coluna == 2? 10 : 25);
+                tabela.append(String.format("%-"+ tamanhoColuna +"s | ", linhas[coluna]));
             }
-            tabela += "\n";
+            tabela.append("\n") ;
         }
         System.out.println(tabela);
     }
@@ -86,9 +87,20 @@ public class Desafio02 {
     }
 
     public static void atualizarUsuario(){
+        exibirUsuario();
 
-        System.out.println("1");
+        System.out.println("\nDigite o id do usuário que deseja atualizar:");
+        int idEscolhido = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println(cabecalho[0] + idEscolhido);
+        for(int coluna = 1; coluna < cabecalho.length; coluna++){
+            System.out.println(cabecalho[coluna] + ": ");
+            matrizCadastro[idEscolhido][coluna] = scanner.nextLine();
+        }
+        exibirUsuario();
     }
+
     public static void  deletarUsuario(){
 
         System.out.println("2");
