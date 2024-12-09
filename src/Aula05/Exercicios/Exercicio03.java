@@ -4,18 +4,19 @@ import java.util.Scanner;
 
 public class Exercicio03 {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
 
-        int numero = 1;
-        System.out.println("Insira o número inteiro: ");
-        numero = scanner.nextInt();
+        System.out.println("Digite um número inteiro para calcular o fatorial: ");
+        int num = scanner.nextInt();
+        int fat = num;
 
-        do{
-            numero = numero * numero - 1;
+        do {
+            fat--;
+            num = num * fat;
         }
+        while (1 < fat);
 
-        while(numero == 0);
-        System.out.println(numero);
+        System.out.println("O fatorial é igual a " + num);
+        scanner.close();
     }
 }
