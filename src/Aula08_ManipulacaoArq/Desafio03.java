@@ -1,9 +1,13 @@
-package Aula06_VetoresMatrizes.Desafios;
+package Aula08_ManipulacaoArq;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Desafio02 {
+public class Desafio03 {
 
     static Scanner scanner = new Scanner(System.in); /*variável global - produz efeito sobre as demais linhas do código*/
     static String[] cabecalho = {"Id","Nome","Telefone","Email"};
@@ -82,8 +86,8 @@ public class Desafio02 {
                 novaMatriz[linhas][coluna] = scanner.nextLine();
             }
         }
-
         matrizCadastro = novaMatriz;
+        salvarDadosNoArquivo();
     }
 
     public static void atualizarUsuario(){
@@ -122,6 +126,27 @@ public class Desafio02 {
         matrizCadastro = novaMatriz;
         System.out.println("Usuário deletado com sucesso!");
         exibirUsuario();
+        salvarDadosNoArquivo();
+    }
 
+    public static void salvarDadosNoArquivo(){
+        try{
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(""));
+            for(String[] linha: matrizCadastro){ /*!!!*/
+                bufferedWriter.write(String.join(",",linha) + "\n");
+            }
+        }
+        catch (Exception e){
+            throw new RuntimeException();
+        }
+    }
+
+    public static void carregarDadosDoArquivo(){
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(""))){
+
+        }
+        catch (Exception e) {
+            throw new RuntimeException();
+        }
     }
 }
