@@ -1,4 +1,4 @@
-package Aula06_VetoresMatrizes.Desafios;
+package Aula07_Funcoes;
 
 import java.util.Arrays;
 import java.util.Scanner;
