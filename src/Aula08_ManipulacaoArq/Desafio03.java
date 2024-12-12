@@ -1,9 +1,6 @@
 package Aula08_ManipulacaoArq;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -12,6 +9,8 @@ public class Desafio03 {
     static Scanner scanner = new Scanner(System.in); /*variável global - produz efeito sobre as demais linhas do código*/
     static String[] cabecalho = {"Id","Nome","Telefone","Email"};
     static String[][] matrizCadastro = {{"",""}}; /*"banco de dados"*/
+
+    static File arquivoBancoDeDados = new File(System.getProperty("user.home"), "bancoDeDodos.txt");
 
     public static void main(String[] args) {
         matrizCadastro[0] = cabecalho;
@@ -131,7 +130,7 @@ public class Desafio03 {
 
     public static void salvarDadosNoArquivo(){
         try{
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(""));
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(arquivoBancoDeDados));
             for(String[] linha: matrizCadastro){ /*!!!*/
                 bufferedWriter.write(String.join(",",linha) + "\n");
             }
@@ -142,11 +141,33 @@ public class Desafio03 {
     }
 
     public static void carregarDadosDoArquivo(){
-        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(""))){
+        String linha;
+        StringBuilder conteudoDoArquivo = new StringBuilder();
 
+        if(!arquivoBancoDeDados.exists()){
+            try{
+                if (arquivoBancoDeDados.createNewFile()){
+                    System.out.println("Arquivo criado " + arquivoBancoDeDados.getName() + "com sucesso");
+                }
+            }
+            catch (IOException e){
+                throw new RuntimeException(e);
+            }
         }
-        catch (Exception e) {
-            throw new RuntimeException();
+
+        try(BufferedReader bufferedReader = new BufferedReader(new FileReader(arquivoBancoDeDados))){
+            while ((linha = bufferedReader.readLine()) !=null){
+                conteudoDoArquivo.append(linha).append("\n");
+            }
+            String[] linhaDadosUsuario = conteudoDoArquivo.toString().split("\n");
+
+            matrizCadastro = new String[linhaDadosUsuario.length][cabecalho.length];
+            for(int i = 0; i < linhaDadosUsuario.length; i++){
+                matrizCadastro[i] = linhaDadosUsuario[i].split(",");
+            }
+        }
+        catch (java.lang.Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }
